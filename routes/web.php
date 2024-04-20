@@ -2,26 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
-Route::get('/', [PostController::class, 'index']);
+use App\Http\Controllers\PageController;
 
 Route::get('/', [PostController::class, 'frontPage'])->name('frontpage');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::resource('posts', PostController::class);
+
+// Routes for blog posts
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-
-// START API
-// Get all posts
-Route::get('/api/posts', [PostController::class, 'indexApi']);
-
-// Get post by ID
-Route::get('/api/posts/{id}', [PostController::class, 'showApi']);
-
-// Get posts by author
-Route::get('/api/posts/author/{author}', [PostController::class, 'showByAuthor']);
-
+// Routes for additional pages
+Route::get('/datenschutz', [PageController::class, 'datenschutz'])->name('datenschutz');
+Route::get('/impressum', [PageController::class, 'impressum'])->name('impressum');
+Route::get('/kontakt', [PageController::class, 'kontakt'])->name('kontakt');
 
 

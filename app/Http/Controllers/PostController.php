@@ -95,23 +95,4 @@ class PostController extends Controller
     
         return redirect()->route('posts.index')->with('success', 'Article deleted successfully!');
     }
-
-    public function indexApi()
-    {
-        $posts = Post::all();
-        return response()->json($posts);
-    }
-
-    public function showApi($id)
-    {
-        $post = Post::findOrFail($id);
-        return response()->json($post);
-    }
-
-    public function showByAuthor($author)
-    {
-        $posts = Post::where('author', $author)->get();
-        return response()->json($posts);
-    }
-    
 }
