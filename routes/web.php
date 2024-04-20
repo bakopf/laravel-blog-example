@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactEntryController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 
 Route::get('/', [PostController::class, 'frontPage'])->name('frontpage');
 
@@ -24,11 +25,16 @@ Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/imprint', [PageController::class, 'imprint'])->name('imprint');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
-
-Route::get('/api/posts', [PostController::class, 'apiIndex']);
-
 Route::get('/contact', [ContactController::class, 'showForm'])->name('pages.contact');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('pages.contact.submit');
+
+// Define new routes for APIs
+Route::get('/api/posts', [ApiController::class, 'getPosts']);
+Route::get('/api/posts/{id}', [ApiController::class, 'getPostById']);
+Route::get('/api/posts/author/{author}', [ApiController::class, 'getPostsByAuthor']);
+Route::post('/api/test', [ApiController::class, 'test']);
+
+
 
 
 

@@ -98,9 +98,21 @@ class PostController extends Controller
 
 
 
-    public function apiIndex()
+    public function indexApi()
     {
         $posts = Post::all();
+        return response()->json($posts);
+    }
+
+    public function showApi($id)
+    {
+        $post = Post::findOrFail($id);
+        return response()->json($post);
+    }
+
+    public function showByAuthor($author)
+    {
+        $posts = Post::where('author', $author)->get();
         return response()->json($posts);
     }
 }
