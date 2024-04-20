@@ -21,3 +21,7 @@ Route::get('/impressum', [PageController::class, 'impressum'])->name('impressum'
 Route::get('/kontakt', [PageController::class, 'kontakt'])->name('kontakt');
 
 
+Route::get('/api/posts', [PostController::class, 'apiIndex']);
+
+
+

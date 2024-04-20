@@ -95,4 +95,12 @@ class PostController extends Controller
     
         return redirect()->route('posts.index')->with('success', 'Article deleted successfully!');
     }
+
+
+
+    public function apiIndex()
+    {
+        $posts = Post::all();
+        return response()->json($posts);
+    }
 }
