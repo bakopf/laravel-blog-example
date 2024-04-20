@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 class PageController extends Controller
 {
-    public function datenschutz()
+    public function privacy()
     {
-        return view('pages.datenschutz');
+        return view('pages.privacy');
     }
 
-    public function impressum()
+    public function imprint()
     {
-        return view('pages.impressum');
+        return view('pages.imprint');
     }
 
-    public function kontakt()
+    public function contact()
     {
-        return view('pages.kontakt');
+        return view('pages.contact');
     }
 }

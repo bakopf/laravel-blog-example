@@ -5,7 +5,13 @@
 @section('content')
 <div class="container">
     <h1>Contact Us</h1>
-    <form action="" method="POST">
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form action="{{ route('pages.contact.submit') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="first_name" class="form-label">Vorname <span class="text-danger">*</span></label>

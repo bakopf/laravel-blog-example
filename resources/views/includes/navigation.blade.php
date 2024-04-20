@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('posts*') ? 'active' : '' }}" href="{{ route('posts.index') }}">Posts</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact-entries.index') }}">Contact Entries</a>
+                </li>
             </ul>
         </div>
     </div>

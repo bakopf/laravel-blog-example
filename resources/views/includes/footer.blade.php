@@ -10,9 +10,9 @@
             <div class="col-lg-3 mb-4 mb-lg-0">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('datenschutz') }}" class="text-white">Datenschutz</a></li>
-                    <li><a href="{{ route('impressum') }}" class="text-white">Impressum</a></li>
-                    <li><a href="{{ route('kontakt') }}" class="text-white">Kontakt</a></li>
+                    <li><a href="{{ route('privacy') }}" class="text-white">Privacy</a></li>
+                    <li><a href="{{ route('imprint') }}" class="text-white">Imprint</a></li>
+                    <li><a href="{{ route('pages.contact') }}" class="text-white">Contact</a></li>
                 </ul>
             </div>
             <div class="col-lg-6">
