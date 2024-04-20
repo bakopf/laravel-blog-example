@@ -10,7 +10,7 @@ class ApiController extends Controller
     public function getPosts()
     {
         $posts = Post::all();
-        Log::info('createPost endpoint called');
+                Log::info('createPost endpoint called');
         return response()->json($posts);
     }
 
@@ -25,6 +25,34 @@ class ApiController extends Controller
         $posts = Post::where('author', $author)->get();
         return response()->json($posts);
     }
+    
+    public function createPost(Request $request)
+    {
+        // Retrieve data from the request query parameters
+        $data = $request->all();
 
+        // Manually perform validation
+        $validatedData = $this->validateRequestData($data);
 
+        // Create a new post using the validated data
+        $post = Post::create($validatedData);
+
+        // For demonstration purposes, let's return the created post as JSON response
+        return response()->json(['message' => 'Blog post created successfully', 'post' => $post], 201);
+    }
+
+    // Custom method to validate request data
+    private function validateRequestData($data)
+    {
+        // Validate the request data manually
+        $validatedData = [
+            'author' => $data['author'] ?? null,
+            'publish_date' => $data['publish_date'] ?? null,
+            'headline' => $data['headline'] ?? null,
+            'text' => $data['text'] ?? null,
+        ];
+
+        // Perform additional validation as needed
+        return $validatedData;
+    }
 }

@@ -32,7 +32,9 @@ Route::post('/contact', [ContactController::class, 'submitForm'])->name('pages.c
 Route::get('/api/posts', [ApiController::class, 'getPosts']);
 Route::get('/api/posts/{id}', [ApiController::class, 'getPostById']);
 Route::get('/api/posts/author/{author}', [ApiController::class, 'getPostsByAuthor']);
-Route::post('/api/test', [ApiController::class, 'test']);
+Route::get('/api/create-post', [ApiController::class, 'createPost']);
+
+
 
 
 
