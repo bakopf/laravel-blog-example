@@ -37,7 +37,7 @@ class ApiController extends Controller
         // Create a new post using the validated data
         $post = Post::create($validatedData);
 
-        // For demonstration purposes, let's return the created post as JSON response
+        // Return the created post as JSON response
         return response()->json(['message' => 'Blog post created successfully', 'post' => $post], 201);
     }
 
@@ -52,7 +52,6 @@ class ApiController extends Controller
             'text' => $data['text'] ?? null,
         ];
 
-        // Perform additional validation as needed
         return $validatedData;
     }
 }

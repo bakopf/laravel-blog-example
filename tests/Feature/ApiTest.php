@@ -23,7 +23,7 @@ class ApiTest extends TestCase
      */
     public function test_it_can_access_get_post_by_id_route(): void
     {
-        $response = $this->get('/api/posts/1'); // Assuming '1' is a valid post ID
+        $response = $this->get('/api/posts/33');
 
         $response->assertStatus(200);
     }
@@ -33,7 +33,7 @@ class ApiTest extends TestCase
      */
     public function test_it_can_access_get_posts_by_author_route(): void
     {
-        $response = $this->get('/api/posts/author/john_doe'); // Assuming 'john_doe' is a valid author name
+        $response = $this->get('/api/posts/author/john_doe');
 
         $response->assertStatus(200);
     }

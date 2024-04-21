@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ContactEntry; // Include the ContactEntry model
+use App\Models\ContactEntry;
 
 class ContactController extends Controller
 {
     public function showForm()
     {
-        return view('pages.contact'); // Assuming your contact form view is in the pages directory
+        return view('pages.contact');
     }
 
     public function submitForm(Request $request)

@@ -15,9 +15,6 @@
                     <li><a href="{{ route('pages.contact') }}" class="text-white">Contact</a></li>
                 </ul>
             </div>
-            <div class="col-lg-6">
-                <!-- Additional links or content can be added here -->
-            </div>
         </div>
     </div>
 </footer>
