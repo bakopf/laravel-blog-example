@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -37,29 +38,46 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     
-    public function store(Request $request)
-    {
-        $request->validate([
-            'author' => 'required|string|max:255',
-            'headline' => 'required|string|max:255',
-            'publish_date' => 'required|date',
-            'category' => 'required|string',
-            'keywords' => 'nullable|string',
-            'text' => 'required|string',
-        ]);
-        
-        // Create the post with the provided data
-        $post = new Post();
-        $post->author = $request->input('author');
-        $post->headline = $request->input('headline');
-        $post->publish_date = $request->input('publish_date');
-        $post->category = $request->input('category');
-        $post->keywords =  $request->input('keywords');
-        $post->text = $request->input('text');
-        $post->save();
-    
-        return redirect()->route('posts.index')->with('success', 'Article created successfully!');
-    }
+     public function store(Request $request)
+     {
+         $request->validate([
+             'author' => 'required|string|max:255',
+             'headline' => 'required|string|max:255',
+             'publish_date' => 'required|date',
+             'category' => 'required|string',
+             'keywords' => 'nullable|string',
+             'text' => 'required|string',
+             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed (in kilobytes)
+         ]);
+     
+         // Create the post with the provided data
+         $post = new Post();
+         $post->author = $request->input('author');
+         $post->headline = $request->input('headline');
+         $post->publish_date = $request->input('publish_date');
+         $post->category = $request->input('category');
+         $post->keywords =  $request->input('keywords');
+         $post->text = $request->input('text');
+     
+         // Handle image upload
+         if ($request->hasFile('image')) {
+             $image = $request->file('image');
+             $filename = time() . '_' . $image->getClientOriginalName();
+             $image->storeAs('public/assets/images/uploads', $filename); // Store image in the specified directory
+     
+             // Save image data to database
+             $post->filename = $filename;
+             $post->filepath = 'assets/images/uploads/' . $filename;
+             $post->upload_date = now();
+             list($width, $height) = getimagesize($image);
+             $post->image_width = $width;
+             $post->image_height = $height;
+         }
+     
+         $post->save();
+     
+         return redirect()->route('posts.index')->with('success', 'Article created successfully!');
+     }
 
 
     /**

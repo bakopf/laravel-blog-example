@@ -14,22 +14,22 @@
             </div>
         @endif
 
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
                 <label for="author">Author:</label>
-                <input type="text" name="author" id="author" class="form-control">
+                <input type="text" name="author" id="author" class="form-control" value="Bastian Kopf">
             </div>
 
             <div class="form-group">
                 <label for="headline">Headline:</label>
-                <input type="text" name="headline" id="headline" class="form-control">
+                <input type="text" name="headline" id="headline" class="form-control" value="Test Headline">
             </div>
 
             <div class="form-group">
                 <label for="publish_date">Publish Date:</label>
-                <input type="date" name="publish_date" id="publish_date" class="form-control">
+                <input type="date" name="publish_date" id="publish_date" class="form-control" value="2018-07-22">
             </div>
 
             <div class="form-group">
@@ -45,13 +45,19 @@
 
             <div class="form-group">
                 <label for="keywords">Keywords (comma-separated):</label>
-                <input type="text" name="keywords" id="keywords" class="form-control">
+                <input type="text" name="keywords" id="keywords" class="form-control" value="test1, test2">
             </div>
 
             <div class="form-group">
                 <label for="text">Text:</label>
-                <textarea name="text" id="text" class="form-control" rows="5"></textarea>
+                <textarea name="text" id="text" class="form-control" rows="5">asdasdasdasdasd</textarea>
             </div>
+
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" class="form-control-file">
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Create Article</button>
         </form>

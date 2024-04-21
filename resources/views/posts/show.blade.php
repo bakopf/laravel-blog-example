@@ -3,7 +3,9 @@
 @section('content')
     <div class="container">
         <h1>{{ $post->headline }}</h1>
-        <?php //var_dump($post); ?>
+        @if ($post->filename)
+            <img src="{{ asset('storage/' . $post->filepath) }}" alt="Post Image">
+        @endif
         <p class="text-muted">{{ $post->author }} | {{ $post->publish_date }}</p>
         <p>Last Change:{{ $post->updated_at}}</p>
         <p>Category: {{ $post->category}}</p>
