@@ -38,46 +38,46 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     
-     public function store(Request $request)
-     {
-         $request->validate([
-             'author' => 'required|string|max:255',
-             'headline' => 'required|string|max:255',
-             'publish_date' => 'required|date',
-             'category' => 'required|string',
-             'keywords' => 'nullable|string',
-             'text' => 'required|string',
-             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed (in kilobytes)
-         ]);
-     
+    public function store(Request $request)
+    {
+        $request->validate([
+            'author' => 'required|string|max:255',
+            'headline' => 'required|string|max:255',
+            'publish_date' => 'required|date',
+            'category' => 'required|string',
+            'keywords' => 'nullable|string',
+            'text' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed (in kilobytes)
+        ]);
+    
          // Create the post with the provided data
-         $post = new Post();
-         $post->author = $request->input('author');
-         $post->headline = $request->input('headline');
-         $post->publish_date = $request->input('publish_date');
-         $post->category = $request->input('category');
-         $post->keywords =  $request->input('keywords');
-         $post->text = $request->input('text');
-     
+        $post = new Post();
+        $post->author = $request->input('author');
+        $post->headline = $request->input('headline');
+        $post->publish_date = $request->input('publish_date');
+        $post->category = $request->input('category');
+        $post->keywords =  $request->input('keywords');
+        $post->text = $request->input('text');
+    
          // Handle image upload
-         if ($request->hasFile('image')) {
-             $image = $request->file('image');
-             $filename = time() . '_' . $image->getClientOriginalName();
-             $image->storeAs('public/assets/images/uploads', $filename); // Store image in the specified directory
-     
-             // Save image data to database
-             $post->filename = $filename;
-             $post->filepath = 'assets/images/uploads/' . $filename;
-             $post->upload_date = now();
-             list($width, $height) = getimagesize($image);
-             $post->image_width = $width;
-             $post->image_height = $height;
-         }
-     
-         $post->save();
-     
-         return redirect()->route('posts.index')->with('success', 'Article created successfully!');
-     }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/assets/images/uploads', $filename); // Store image in the specified directory
+    
+            // Save image data to database
+            $post->filename = $filename;
+            $post->filepath = 'assets/images/uploads/' . $filename;
+            $post->upload_date = now();
+            list($width, $height) = getimagesize($image);
+            $post->image_width = $width;
+            $post->image_height = $height;
+        }
+    
+        $post->save();
+    
+        return redirect()->route('posts.index')->with('success', 'Article created successfully!');
+    }
 
 
     /**
@@ -109,8 +109,9 @@ class PostController extends Controller
             'category' => 'required|string',
             'keywords' => 'nullable|string',
             'text' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
         ]);
-        
+    
         // Update the existing post with the provided data
         $post->author = $request->input('author');
         $post->headline = $request->input('headline');
@@ -118,10 +119,30 @@ class PostController extends Controller
         $post->category = $request->input('category');
         $post->keywords = $request->input('keywords');
         $post->text = $request->input('text');
+    
+        // Handle image upload if a new image is provided
+        if ($request->hasFile('image')) {
+            // Delete the old image file if it exists
+            if ($post->filename) {
+                Storage::delete('public/assets/images/uploads/' . $post->filename);
+            }
+    
+            // Upload and save the new image file
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/assets/images/uploads', $filename); // Store image in the specified directory
+            $post->filename = $filename;
+            $post->filepath = 'assets/images/uploads/' . $filename;
+            $post->upload_date = now();
+            list($width, $height) = getimagesize($image);
+            $post->image_width = $width;
+            $post->image_height = $height;
+        }
+    
         $post->save();
-
+    
         return redirect()->route('posts.index')->with('success', 'Article updated successfully!');
-    }   
+    }
     
 
     /**
@@ -129,8 +150,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->filename) {
+            Storage::delete('public/assets/images/uploads/' . $post->filename);
+        }
         $post->delete();
-    
         return redirect()->route('posts.index')->with('success', 'Article deleted successfully!');
     }
 

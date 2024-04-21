@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Edit Article</h1>
-        <form action="{{ route('posts.update', $post->id) }}" method="POST">
+        <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -34,7 +34,17 @@
 
             <div class="form-group">
                 <label for="keywords">Keywords:</label>
-                <input type="text" name="keywords" id="keywords" class="form-control" value="{{ $post->keywords  }}">
+                <input type="text" name="keywords" id="keywords" class="form-control" value="{{ $post->keywords }}">
+            </div>
+
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" class="form-control-file">
+                @if ($post->filename)
+                    <div>
+                        <img src="{{ asset('/storage/' . $post->filepath) }}" alt="Current Image" style="max-width: 200px;">
+                    </div>
+                @endif
             </div>
 
             <div class="form-group">

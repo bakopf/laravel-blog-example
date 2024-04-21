@@ -14,5 +14,13 @@ class Post extends Model
         'publish_date',
         'headline',
         'text',
+        'category',
+        'keywords',
+        'filename',
+        'filepath',
+        'upload_date',
+        'image_width',
+        'image_height',
     ];
+    
 }

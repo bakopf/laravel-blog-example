@@ -4,7 +4,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-/storage/app/assets/images/upload/
+/storage/app/public/assets/images/uploads
 /vendor
 .env
 .env.backup
