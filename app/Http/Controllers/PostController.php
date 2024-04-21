@@ -36,20 +36,31 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {
         $request->validate([
             'author' => 'required|string|max:255',
             'headline' => 'required|string|max:255',
             'publish_date' => 'required|date',
+            'category' => 'required|string',
+            'keywords' => 'nullable|string',
             'text' => 'required|string',
         ]);
-    
-        Post::create($request->all());
+        
+        // Create the post with the provided data
+        $post = new Post();
+        $post->author = $request->input('author');
+        $post->headline = $request->input('headline');
+        $post->publish_date = $request->input('publish_date');
+        $post->category = $request->input('category');
+        $post->keywords =  $request->input('keywords');
+        $post->text = $request->input('text');
+        $post->save();
     
         return redirect()->route('posts.index')->with('success', 'Article created successfully!');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -77,13 +88,22 @@ class PostController extends Controller
             'author' => 'required|string|max:255',
             'headline' => 'required|string|max:255',
             'publish_date' => 'required|date',
+            'category' => 'required|string',
+            'keywords' => 'nullable|string',
             'text' => 'required|string',
         ]);
-    
-        $post->update($request->all());
-    
+        
+        // Update the existing post with the provided data
+        $post->author = $request->input('author');
+        $post->headline = $request->input('headline');
+        $post->publish_date = $request->input('publish_date');
+        $post->category = $request->input('category');
+        $post->keywords = $request->input('keywords');
+        $post->text = $request->input('text');
+        $post->save();
+
         return redirect()->route('posts.index')->with('success', 'Article updated successfully!');
-    }
+    }   
     
 
     /**

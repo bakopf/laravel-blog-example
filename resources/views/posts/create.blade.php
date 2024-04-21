@@ -33,6 +33,22 @@
             </div>
 
             <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="Tech">Tech</option>
+                    <option value="Dev">Dev</option>
+                    <option value="Funny">Funny</option>
+                    <option value="Frameworks">Frameworks</option>
+                    <option value="Gaming">Gaming</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="keywords">Keywords (comma-separated):</label>
+                <input type="text" name="keywords" id="keywords" class="form-control">
+            </div>
+
+            <div class="form-group">
                 <label for="text">Text:</label>
                 <textarea name="text" id="text" class="form-control" rows="5"></textarea>
             </div>

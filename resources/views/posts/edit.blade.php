@@ -17,10 +17,25 @@
                 <label for="headline">Headline:</label>
                 <input type="text" name="headline" id="headline" class="form-control" value="{{ $post->headline }}">
             </div>
-
             <div class="form-group">
                 <label for="publish_date">Publish Date:</label>
                 <input type="date" name="publish_date" id="publish_date" class="form-control" value="{{ $post->publish_date }}">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="Tech" {{ $post->category === 'Tech' ? 'selected' : '' }}>Tech</option>
+                    <option value="Dev" {{ $post->category === 'Dev' ? 'selected' : '' }}>Dev</option>
+                    <option value="Funny" {{ $post->category === 'Funny' ? 'selected' : '' }}>Funny</option>
+                    <option value="Frameworks" {{ $post->category === 'Frameworks' ? 'selected' : '' }}>Frameworks</option>
+                    <option value="Gaming" {{ $post->category === 'Gaming' ? 'selected' : '' }}>Gaming</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="keywords">Keywords:</label>
+                <input type="text" name="keywords" id="keywords" class="form-control" value="{{ $post->keywords  }}">
             </div>
 
             <div class="form-group">
