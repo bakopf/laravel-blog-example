@@ -167,6 +167,9 @@ class PostController extends Controller
         return view('posts.category', compact('category', 'posts'));
     }    
 
+    /**
+     * Show keyword page with matching blog posts.
+     */
     public function keyword($keyword)
     {
         // Retrieve posts for the given keyword
