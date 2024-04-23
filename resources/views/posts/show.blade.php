@@ -9,12 +9,9 @@
         <p class="text-muted">{{ $post->author }} | {{ $post->publish_date }}</p>
         <p>Last Change:{{ $post->updated_at}}</p>
         <p>Category: {{ $post->category}}</p>
-        @php
-            $keywords_array = explode(',', $post->keywords);
-        @endphp
 
         <p>Keywords:
-        @foreach ($keywords_array as $keyword)
+        @foreach (explode(',', $post->keywords); as $keyword)
             <a href="#">{{ $keyword }}</a>@unless($loop->last),@endunless
         @endforeach
         </p>
