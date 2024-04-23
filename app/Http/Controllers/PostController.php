@@ -167,6 +167,13 @@ class PostController extends Controller
         return view('posts.category', compact('category', 'posts'));
     }    
 
+    public function keyword($keyword)
+    {
+        // Retrieve posts for the given keyword
+        $posts = Post::where('keywords', 'like', '%'.$keyword.'%')->get();
+        return view('posts.keyword', compact('keyword', 'posts'));
+    }
+
     public function indexApi()
     {
         $posts = Post::all();

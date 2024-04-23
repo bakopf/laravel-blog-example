@@ -25,6 +25,7 @@ Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/imprint', [PageController::class, 'imprint'])->name('imprint');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/posts/category/{category}', [PostController::class, 'category'])->name('posts.category');
+Route::get('/posts/keyword/{keyword}', [PostController::class, 'keyword'])->name('posts.keyword');
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('pages.contact');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('pages.contact.submit');

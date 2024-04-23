@@ -11,9 +11,9 @@
         <p>Category: <a href="{{ route('posts.category', $post->category) }}">{{ $post->category }}</a></p>
 
         <p>Keywords:
-        @foreach (explode(',', $post->keywords); as $keyword)
-            <a href="#">{{ $keyword }}</a>@unless($loop->last),@endunless
-        @endforeach
+            @foreach (explode(',', $post->keywords) as $keyword)
+                <a href="{{ route('posts.keyword', $keyword) }}">{{ $keyword }}</a>@unless($loop->last),@endunless
+            @endforeach
         </p>
         
         <p>{{ $post->text }}</p>
