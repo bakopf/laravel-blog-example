@@ -8,16 +8,15 @@
         @endif
         <p class="text-muted">{{ $post->author }} | {{ $post->publish_date }}</p>
         <p>Last Change:{{ $post->updated_at}}</p>
-        <p>Category: <a href="{{ route('posts.category', $post->category) }}">{{ $post->category }}</a></p>
-
+        <p>Category: @if ($post->category)<a href="{{ route('posts.category', $post->category) }}">{{ $post->category }}</a></p>@endif 
         <p>Keywords:
-            @foreach (explode(',', $post->keywords) as $keyword)
-                <a href="{{ route('posts.keyword', $keyword) }}">{{ $keyword }}</a>@unless($loop->last),@endunless
-            @endforeach
+            @if ($post->keyword)
+                @foreach (explode(',', $post->keywords) as $keyword)
+                    <a href="{{ route('posts.keyword', $keyword) }}">{{ $keyword }}</a>@unless($loop->last),@endunless
+                @endforeach
+            @endif 
         </p>
-        
         <p>{{ $post->text }}</p>
-        
         <a href="{{ route('frontpage') }}" class="btn btn-primary">Back to Front Page</a>
     </div>
 @endsection
