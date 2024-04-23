@@ -8,7 +8,7 @@
         @endif
         <p class="text-muted">{{ $post->author }} | {{ $post->publish_date }}</p>
         <p>Last Change:{{ $post->updated_at}}</p>
-        <p>Category: {{ $post->category}}</p>
+        <p>Category: <a href="{{ route('posts.category', $post->category) }}">{{ $post->category }}</a></p>
 
         <p>Keywords:
         @foreach (explode(',', $post->keywords); as $keyword)

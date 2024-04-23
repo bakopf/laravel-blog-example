@@ -81,7 +81,7 @@ class PostController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Display blog post detail.
      */
     public function show(Post $post)
     {
@@ -89,7 +89,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing blog posts
      */
     public function edit(Post $post)
     {
@@ -98,7 +98,7 @@ class PostController extends Controller
     
 
     /**
-     * Update the specified resource in storage.
+     * Update blog posts from edit form.
      */
     public function update(Request $request, Post $post)
     {
@@ -146,7 +146,7 @@ class PostController extends Controller
     
 
     /**
-     * Remove the specified resource from storage.
+     * Remove a single blog post from db.
      */
     public function destroy(Post $post)
     {
@@ -157,7 +157,15 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Article deleted successfully!');
     }
 
-
+    /**
+     * Show category page with matching blog posts.
+     */
+    public function category($category)
+    {
+        // Retrieve posts for the specified category
+        $posts = Post::where('category', $category)->get();
+        return view('posts.category', compact('category', 'posts'));
+    }    
 
     public function indexApi()
     {
