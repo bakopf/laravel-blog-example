@@ -35,5 +35,8 @@
     "bugs": {
         "url": "https://github.com/bakopf/company-blog/issues"
     },
-    "homepage": "https://github.com/bakopf/company-blog#readme"
+    "homepage": "https://github.com/bakopf/company-blog#readme",
+    "dependencies": {
+        "jquery": "^3.7.1"
+    }
 }
