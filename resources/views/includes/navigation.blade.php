@@ -1,3 +1,4 @@
+<!-- Navigation with Logout Dropdown -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div class="container">
         <!-- Logo and Name -->
@@ -14,32 +15,37 @@
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('frontpage') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('posts*') ? 'active' : '' }}" href="{{ route('posts.index') }}">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact-entries.index') }}">Contact Entries</a>
-                </li>
+                <!-- Add your other navigation links here -->
             </ul>
 
             <!-- Authentication Links -->
             <ul class="navbar-nav ml-auto">
                 @guest
+                    <!-- Login link for guest users -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
                 @else
-                    <li class="nav-item">
-                        <span class="nav-link">Welcome, {{ Auth::user()->email }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link nav-link">Logout</button>
-                        </form>
+                    <!-- Logout dropdown for authenticated users -->
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <!-- User details -->
+                            <div class="dropdown-item-text">
+                                <p class="mb-1">{{ Auth::user()->email }}</p>
+                                <!-- Divider -->
+                                <div class="dropdown-divider"></div>
+                                <!-- Logout link -->
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link">Logout</button>
+                                </form>
+                            </div>
+                        </div>
                     </li>
                 @endguest
             </ul>
