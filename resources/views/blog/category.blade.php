@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->headline }}</h5>
                     <p class="card-text">{{ $post->text }}</p>
-                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
+                    <a href="{{ route('blog.blogpost', $post->id) }}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         @endforeach

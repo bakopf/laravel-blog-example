@@ -43,6 +43,12 @@
             </table>
         @endif
 
-        <a href="{{ route('posts.create') }}" class="btn btn-primary">Create New Article</a>
+        @auth
+            <a href="{{ route('posts.create') }}" class="btn btn-primary">Create New Article</a>
+        @endauth
+
+        @guest
+            <p>You need to <a href="{{ route('login') }}">login</a> to create new articles.</p>
+        @endguest
     </div>
 @endsection

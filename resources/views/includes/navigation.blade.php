@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Logo and Name -->
         <a class="navbar-brand" href="{{ route('frontpage') }}">
-        <img src="{{ asset('assets/images/logos/logo.svg') }}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+            <img src="{{ asset('assets/images/logos/logo.svg') }}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
             My Blog
         </a>
 
@@ -23,6 +23,25 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact-entries.index') }}">Contact Entries</a>
                 </li>
+            </ul>
+
+            <!-- Authentication Links -->
+            <ul class="navbar-nav ml-auto">
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, {{ Auth::user()->email }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>

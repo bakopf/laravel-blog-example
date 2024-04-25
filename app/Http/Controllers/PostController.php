@@ -78,16 +78,6 @@ class PostController extends Controller
     
         return redirect()->route('posts.index')->with('success', 'Article created successfully!');
     }
-
-
-    /**
-     * Display blog post detail.
-     */
-    public function show(Post $post)
-    {
-        return view('posts.show', compact('post'));
-    }
-
     /**
      * Show the form for editing blog posts
      */
@@ -96,7 +86,6 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
     
-
     /**
      * Update blog posts from edit form.
      */
@@ -156,27 +145,6 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Article deleted successfully!');
     }
-
-    /**
-     * Show category page with matching blog posts.
-     */
-    public function category($category)
-    {
-        // Retrieve posts for the specified category
-        $posts = Post::where('category', $category)->get();
-        return view('posts.category', compact('category', 'posts'));
-    }    
-
-    /**
-     * Show keyword page with matching blog posts.
-     */
-    public function keyword($keyword)
-    {
-        // Retrieve posts for the given keyword
-        $posts = Post::where('keywords', 'like', '%'.$keyword.'%')->get();
-        return view('posts.keyword', compact('keyword', 'posts'));
-    }
-
     public function indexApi()
     {
         $posts = Post::all();
