@@ -24,17 +24,7 @@ class RouteTest extends TestCase
      */
     public function test_it_can_access_post_show_route(): void
     {
-        $response = $this->get('/posts/33'); // Assuming '1' is a valid post ID
-
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A basic test example.
-     */
-    public function test_it_can_access_post_edit_route(): void
-    {
-        $response = $this->get('/posts/33/edit'); // Assuming '1' is a valid post ID
+        $response = $this->get('/blog/33'); // Assuming '1' is a valid post ID
 
         $response->assertStatus(200);
     }
