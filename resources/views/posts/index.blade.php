@@ -26,7 +26,7 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{ $post->author }}</td>
-                            <td>{{ $post->headline }}</td>
+                            <td>{!! Str::limit($post->text, 100) !!}</td>
                             <td>{{ $post->publish_date }}</td>
                             <td>
                                 <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>

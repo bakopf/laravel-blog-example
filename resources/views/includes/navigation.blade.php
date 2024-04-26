@@ -12,12 +12,6 @@
             <li class="nav-item">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('frontpage') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('posts*') ? 'active' : '' }}" href="{{ route('posts.index') }}">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact-entries.index') }}">Contact Entries</a>
-                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 @guest
@@ -35,8 +29,10 @@
                                 <p class="mb-1">{{ Auth::user()->email }}</p>
                             </li>
                             <li class="dropdown-divider"></li>
+                            <li><a href="{{ route('profile') }}" class="btn btn-link">My Profile</a></li>
+                            <li><a class="btn btn-link {{ request()->is('posts*') ? 'active' : '' }}" href="{{ route('posts.index') }}">Posts</a></li>
+                            <li><a class="btn btn-link" href="{{ route('contact-entries.index') }}">Contact Entries</a></li>
                             <li>
-                                <a href="{{ route('profile') }}" class="btn btn-link">My Profile</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-link">Logout</button>

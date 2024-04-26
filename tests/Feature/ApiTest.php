@@ -23,7 +23,7 @@ class ApiTest extends TestCase
      */
     public function test_it_can_access_get_post_by_id_route(): void
     {
-        $response = $this->get('/api/posts/33');
+        $response = $this->get('/api/posts/1');
 
         $response->assertStatus(200);
     }
