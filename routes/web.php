@@ -7,7 +7,7 @@ use App\Http\Controllers\ContactEntryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\BlogController;
-
+use App\Http\Controllers\User\ProfileController;
 
 Route::get('/', [BlogController::class, 'frontPage'])->name('frontpage');
 
@@ -21,6 +21,8 @@ Route::middleware(['auth'])->prefix('posts')->group(function () {
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
+// User Pages
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 
 // Routes for Blog
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
