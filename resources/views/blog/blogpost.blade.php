@@ -2,12 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ $post->headline }}</h1>
+        <p class="text-muted mt-1">{{ $post->author }} | {{ $post->publish_date }}</p> <p>Last Change:{{ $post->updated_at}}</p>
         @if ($post->filename)
-            <img src="{{ asset('storage/' . $post->filepath) }}" alt="Post Image">
+            <img src="{{ asset('storage/' . $post->filepath) }}" alt="Post Image" class="img-fluid mt-3">
         @endif
-        <p class="text-muted">{{ $post->author }} | {{ $post->publish_date }}</p>
-        <p>Last Change:{{ $post->updated_at}}</p>
         <p>Category: @if ($post->category)<a href="{{ route('blog.category', $post->category) }}">{{ $post->category }}</a></p>@endif 
         <p>Keywords:
             @if ($post->keywords)
@@ -16,7 +14,8 @@
                 @endforeach
             @endif 
         </p>
-        <p>{{ $post->text }}</p>
-        <a href="{{ route('frontpage') }}" class="btn btn-primary">Back to Front Page</a>
+        <div>{!! $post->headline !!}</div>
+        <div>{!! $post->text !!}</div>
+        <div><a href="{{ route('frontpage') }}" class="btn btn-primary mt-5">Back to Front Page</a></div>
     </div>
 @endsection

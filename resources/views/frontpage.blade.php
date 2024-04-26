@@ -16,8 +16,8 @@
                                 @if ($post->filename)
                                     <img src="{{ asset('storage/' . $post->filepath) }}" alt="Post Image">
                                 @endif
-                                <h5 class="card-title">{{ $post->headline }}</h5>
-                                <p class="card-text">{{ Str::limit($post->text, 100) }}</p>
+                                <h5 class="card-title mt-3">{!! $post->headline !!}</h5>
+                                <p class="card-text">{!! Str::limit($post->text, 50) !!}</p>
                                 <a href="{{ route('blog.show', $post->id) }}" class="btn btn-primary">Read More</a>
                             </div>
                         </div>
