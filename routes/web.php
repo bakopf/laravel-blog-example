@@ -23,6 +23,8 @@ Route::middleware(['auth'])->prefix('posts')->group(function () {
 
 // User Pages
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+Route::get('/profile/change-password', [ProfileController::class, 'showChangePasswordForm'])->name('profile.change-password');
+Route::post('/profile/change-password', [ProfileController::class, 'changePassword']);
 
 // Routes for Blog
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');

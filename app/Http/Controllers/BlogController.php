@@ -6,12 +6,18 @@ use App\Models\Post;
 
 class BlogController extends Controller
 {
+    /**
+     * Show posts on frontpage
+     */
     public function frontPage()
     {
         $posts = Post::all();
         return view('frontpage', compact('posts'));
     }
 
+    /**
+     * Show posts on blogpage
+     */
     public function index()
     {
         $posts = Post::latest()->paginate(10); // Fetch blog posts, adjust as needed
